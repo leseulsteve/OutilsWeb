@@ -1,5 +1,5 @@
 <?php
-class Themes_BootStrap3_Theme extends ClassesAbstraites_ThemeAbstraite
+class Themes_Defaut_Theme extends ClassesAbstraites_ThemeAbstraite
 {
 	public function __construct(){}
 
@@ -9,13 +9,7 @@ class Themes_BootStrap3_Theme extends ClassesAbstraites_ThemeAbstraite
  	 *
  	 * @param Objet L'objet à 'themer'.
  	 */
-	public function setLigneRayees($objet)
-	{
-		if ($this->getNomClasse($objet) == 'tableau')
-		{
-			$objet->ajoutClasse('table-striped');
-		}
-	}
+	public function setLigneRayees($objet){}
 
 	/**
  	 * Une bordure tout le tour de l'objet sera ajouter.
@@ -23,13 +17,7 @@ class Themes_BootStrap3_Theme extends ClassesAbstraites_ThemeAbstraite
  	 *
  	 * @param Objet L'objet à 'themer'.
  	 */
-	public function setBordure($objet)
-	{
-		if ($this->getNomClasse($objet) == 'tableau')
-		{
-			$objet->ajoutClasse('table-bordered');
-		}
-	}
+	public function setBordure($objet){}
 
 	/**
  	 * Retire les syles de l'objet.
@@ -37,13 +25,7 @@ class Themes_BootStrap3_Theme extends ClassesAbstraites_ThemeAbstraite
  	 *
  	 * @param Objet L'objet à 'themer'.
  	 */
-	public function setSansStyle($objet)
-	{
-		if ($this->getNomClasse($objet) == 'liste')
-		{
-			$objet->ajoutClasse('list-unstyled');
-		}
-	}
+	public function setSansStyle($objet){}
 
 	/**
  	 * Les éléments de l'objet envoyé en paramètre seront affichés horizontalement.
@@ -51,29 +33,6 @@ class Themes_BootStrap3_Theme extends ClassesAbstraites_ThemeAbstraite
  	 *
  	 * @param Objet L'objet à 'themer'.
  	 */
-	public function setHorizontal($objet)
-	{
-		if ($this->getNomClasse($objet) == 'conteneur')
-		{
-			$elements = $objet->getElements();
-			$nbElements = sizeof($elements);
-
-			foreach ($elements as $element)
-			{	
-
-				foreach ($element->getClasses() as $classe) 
-				{
-					if(strpos($classe, 'col-md') === 0)
-					{
-    					$element->retraitClasse($classe);
-    				}
-    			}
-    	
-    		$element->ajoutClasse('col-md-' . 12 / $nbElements);
-    		}
-			
-			$this->horizontal = true;	
-		}
-	}
+	public function setHorizontal($objet){}
 }
 ?>

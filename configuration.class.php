@@ -6,6 +6,7 @@ class Configuration
 
 	private function __construct()
 	{
+		//$this->theme = new Themes_Defaut_Theme();	
 		$this->theme = new Themes_BootStrap3_Theme();	
 	}
 	
