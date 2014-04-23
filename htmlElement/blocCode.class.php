@@ -1,6 +1,6 @@
 <?php
 
-class HtmlElement_BlocCode extends HtmlElement_ClassesAbstraites_HtmlElement
+class HtmlElement_BlocCode extends HtmlElement_ClassesAbstraites_HtmlElementAbstraite
 {
 	private $code;
 

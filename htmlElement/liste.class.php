@@ -1,6 +1,6 @@
 <?php
 
-class HtmlElement_Liste extends HtmlElement_ClassesAbstraites_HtmlElement
+class HtmlElement_Liste extends HtmlElement_ClassesAbstraites_HtmlElementAbstraite
 {	
 	private $titre_liste;
 	private $listeElements;

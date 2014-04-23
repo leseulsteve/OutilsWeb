@@ -1,6 +1,6 @@
 <?php
 
-class HtmlElement_Tableau extends HtmlElement_ClassesAbstraites_HtmlElement
+class HtmlElement_Tableau extends HtmlElement_ClassesAbstraites_HtmlElementAbstraite
 {
 	private $donnees;
 	private $entetes;
