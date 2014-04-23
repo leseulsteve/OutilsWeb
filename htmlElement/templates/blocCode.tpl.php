@@ -1,1 +1,0 @@
-<pre><?php print $this->getCode() ?></pre>

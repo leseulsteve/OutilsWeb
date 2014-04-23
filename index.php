@@ -1,4 +1,9 @@
 <?php
+$theme = new Themes_BootStrap3_Theme();
+
+
+
+
 $titre_page = 'Tableau';
 $feuillesCss = array();
 array_push($feuillesCss, '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
@@ -22,8 +27,9 @@ array_push($donnees, $julie);
 array_push($donnees, $jess);
 
 $tableau = new HtmlElement_Tableau($donnees);
-$tableau->setBordure();
-$tableau->setLigneRayees();
+$theme->setBordure($tableau);
+$theme->setLigneRayees($tableau);
+
 
 $contenu_droite = new HtmlElement_Conteneur();
 
@@ -42,7 +48,7 @@ $nouvelle_liste->setListeOrdonee();
 $souslisteElement2 = array('123', '4545', '34343');
 $nouvelle_liste2 = new HtmlElement_Liste($souslisteElement);
 
-$nouvelle_liste2->setListeNonOrdonee();
+
 
 $nouvelle_liste->ajoutSousListe(1, $nouvelle_liste2);
 $liste->ajoutSousListe(2, $nouvelle_liste);
@@ -53,14 +59,12 @@ $contenu_gauche->ajout($liste);
 
 $contenu->ajout($contenu_gauche);
 
-$codeBloc = new HtmlElement_BlocCode('function __autoload($class_name){$nom_fichier = str_replace('_', DIRECTORY_SEPARATOR, strtolower($class_name)).'.class.php';include_once $nom_fichier;}');
-$contenu->ajout($codeBloc);
 
+$code = new HtmlElement_BlocCode('c:\fdfkjfdkdk');
 
+$contenu->ajout($code);
 
-
-
-include 'templates/html.tpl.php';
+include 'themes/bootstrap3/html.tpl.php';
 
 function __autoload($class_name)
 {

@@ -6,15 +6,15 @@ class HtmlElement_Conteneur extends HtmlElement_ClassesAbstraites_HtmlElement
 	private $horizontal = false;
 
 	/**
- 	 * Constructeur d'un tableau html.
- 	 *
- 	 * @param String $titre Le titre du tableau.
+ 	 * Constructeur d'un conteneur html.
  	 */
-	public function __construct()
-	{
-		parent::ajoutClasse('container');
-	}
+	public function __construct(){}
 
+	/**
+ 	 * Ajout d'un élément au conteneur.
+ 	 *
+ 	 * @param Objet $element L'élément à ajouter.
+ 	 */
 	public function ajout($element)
 	{
 		array_push($this->elements, $element);
@@ -25,30 +25,14 @@ class HtmlElement_Conteneur extends HtmlElement_ClassesAbstraites_HtmlElement
 		}
 	}
 	
-	public function getElement()
+	/**
+ 	 * Accesseur des éléments du conteneur.
+ 	 *
+ 	 * @return Array Les éléments du conteneur.
+ 	 */
+	public function getElements()
 	{
 		return $this->elements;
-	}
-
-	public function horizontal()
-	{
-		$nbElements = sizeof($this->elements);
-
-		foreach ($this->elements as $element)
-		{
-
-			foreach ($element->getClasses() as $classe) 
-			{
-				if(strpos($classe, 'col-md') === 0)
-				{
-    				$element->retraitClasse($classe);
-    			}
-    		}
-    	
-    	$element->ajoutClasse('col-md-' . 12 / $nbElements);
-    	}
-			
-		$this->horizontal = true;	
 	}
 }
 ?>

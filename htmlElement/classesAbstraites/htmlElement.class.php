@@ -5,23 +5,34 @@ abstract class HtmlElement_ClassesAbstraites_HtmlElement extends ClassesAbstrait
 	protected $id;
 	protected $classes = array();
 
-	public function __construct($classe)
-	{
-		array_push($classes, $classe);
-	}
-
+	/**
+ 	 * Ajoute une classe CSS à l'objet.
+ 	 *
+ 	 * @param String $classe La classe CSS à ajouter.
+ 	 */
 	public function ajoutClasse($classe)
 	{
 		array_push($this->classes, $classe);
 	}
 
+	/**
+ 	 * Retire une classe CSS à l'objet.
+ 	 *
+ 	 * @param String $classe La classe CSS à retirer.
+ 	 */
 	public function retraitClasse($classe)
 	{
-		if(($clef = array_search($classe, $this->classes)) !== false) {
-    	unset($this->classes[$clef]);
+		if(($clef = array_search($classe, $this->classes)) == true) 
+		{
+    		unset($this->classes[$clef]);
 		}
 	}
 
+	/**
+ 	 * Accesseur des classes CSS de l'objet.
+ 	 *
+ 	 * @return Array Les classes CSS de l'objet.
+ 	 */
 	public function getClasses()
 	{
 		return $this->classes;
@@ -52,28 +63,35 @@ abstract class HtmlElement_ClassesAbstraites_HtmlElement extends ClassesAbstrait
 		return $this->id;
 	}
 
+	/**
+ 	 * Retourne les classes CSS de l'objet sous forme de string séparés par des espaces.
+ 	 *
+ 	 * @return String Les classes CSS de l'objet.
+ 	 */
 	protected function classesEnString($classes)
 	{
-		$retour = '';
-
-		$derniereClasse = end($classes);
-
-		foreach ($classes as $classe) 
+		if (empty($classes))
 		{
-			$retour .= $classe;
+			$retour = null;
+		}
+		else
+		{
+			$retour = '';
 
-			if ($classe != $derniereClasse) 
+			$derniereClasse = end($classes);
+
+			foreach ($classes as $classe) 
 			{
-					$retour .= ' ';
+				$retour .= $classe;
+
+				if ($classe != $derniereClasse) 
+				{
+						$retour .= ' ';
+				}
 			}
 		}
 
 		return $retour;
-	}
-
-	public function centrer()
-	{
-		$this->ajoutClasse('center-block');
 	}
 }
 ?>

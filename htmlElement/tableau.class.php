@@ -2,13 +2,10 @@
 
 class HtmlElement_Tableau extends HtmlElement_ClassesAbstraites_HtmlElement
 {
-	
 	private $donnees;
 	private $entetes;
 	private $colonnesClasses = array();
 	private $lignesClasses = array();
-	
-	
 
 	/**
  	 * Constructeur d'un tableau html.
@@ -17,11 +14,14 @@ class HtmlElement_Tableau extends HtmlElement_ClassesAbstraites_HtmlElement
  	 */
 	public function __construct($donnees)
 	{
-		parent::ajoutClasse('table');
+		parent::ajoutClasse('tableau');
 		$this->donnees = $donnees;
+		
+		// Définition des entêtes.
 		$clefs = array_keys($this->donnees);
 		$this->entetes = array_keys($this->donnees[$clefs[0]]);
 		
+		// Définition des classes CSS des colonnes.
 		$nbColonnes = sizeof($clefs);
 		for ($i = 1; $i <= $nbColonnes; $i++)
 		{
@@ -31,6 +31,7 @@ class HtmlElement_Tableau extends HtmlElement_ClassesAbstraites_HtmlElement
 
 		}
 
+		// Définition des classes CSS des lignes.
 		$nbLignes = sizeof($donnees);
 		for ($i = 1; $i <= $nbLignes; $i++)
 		{
@@ -52,7 +53,6 @@ class HtmlElement_Tableau extends HtmlElement_ClassesAbstraites_HtmlElement
 		return $this->donnees;
 	}
 
-
 	/**
  	 * Accesseur des entêtes du tableau.
  	 *
@@ -63,39 +63,46 @@ class HtmlElement_Tableau extends HtmlElement_ClassesAbstraites_HtmlElement
 		return $this->entetes;
 	}
 
-	public function getColonneClasses($noColonne)
-	{
-		$retour = '';
-		$classes = $this->colonnesClasses[$noColonne - 1];
-		return parent::classesEnString($classes);
-	}
-
 	/**
- 	 * Accesseur des classes css des lignes du tableau.
+ 	 * Accesseur des classes CSS des colonnes du tableau.
  	 *
- 	 * @return Array Les classes css des lignes du tableau.
+ 	 * @return Array Les classes CSS des colonnes du tableau.
  	 */
-	public function getLigneClasses($noLigne)
+	public function getColonneClasses()
 	{
-		$retour = '';
-		$classes = $this->lignesClasses[$noLigne - 1];
-		return parent::classesEnString($classes);
-	}
+		$retour = array();
 
-	public function setBordure()
-	{
-		parent::ajoutClasse('table-bordered');
-	}
+		for($i = 0; $i < sizeof($this->colonnesClasses); $i ++)
+		{
+			$retour[$i + 1] = parent::classesEnString($this->colonnesClasses[$i]);
 
-	public function setLigneRayees()
-	{
-		parent::ajoutClasse('table-striped');
+		}
+
+		return $retour;
 	}
 
 	/**
- 	 * Permet de spécifier qu'elle colonne sera utiliser pour le tri des lignes.
+ 	 * Accesseur des classes CSS des lignes du tableau.
  	 *
- 	 * @param Integer $colonne Colonne utilisée pour le tri des lignes (commence à 1).
+ 	 * @return Array Les classes CSS des lignes du tableau.
+ 	 */
+	public function getLigneClasses()
+	{
+		$retour = array();
+
+		foreach($this->lignesClasses as $classe)
+		{
+			array_push($retour, parent::classesEnString($classe));
+
+		}
+		
+		return $retour;
+	}
+
+	/**
+ 	 * Permet de spécifier qu'elle colonne sera utilisée pour le tri des lignes.
+ 	 *
+ 	 * @param int $colonne Colonne utilisée pour le tri des lignes (commence à 1).
  	 */ 
 	public function trier($colonne)
 	{

@@ -5,9 +5,9 @@ class HtmlElement_BlocCode extends HtmlElement_ClassesAbstraites_HtmlElement
 	private $code;
 
 	/**
- 	 * Constructeur d'un tableau html.
+ 	 * Constructeur d'un bloc de code html.
  	 *
- 	 * @param String $titre Le titre du tableau.
+ 	 * @param String $code Le code à afficher.
  	 */
 	public function __construct($code)
 	{
@@ -15,6 +15,11 @@ class HtmlElement_BlocCode extends HtmlElement_ClassesAbstraites_HtmlElement
 		$this->code = $code;
 	}
 
+	/**
+ 	 * Accesseur du code à afficher.
+ 	 *
+ 	 * @return String Le code à afficher.
+ 	 */
 	public function getCode()
 	{
 		return $this->code;
