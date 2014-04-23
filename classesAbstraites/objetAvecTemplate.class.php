@@ -10,8 +10,13 @@ abstract class classesAbstraites_ObjetAvecTemplate
 		$nomFichier = basename($reflecteur->getFileName(), '.class.php') . '.tpl.php';
 		$fichierDefaut = 'themes/defaut' . '/' . $nomFichier;
 
-		$cheminTheme = 'themes/bootStrap3';
-		$fichierTheme = $cheminTheme . '/' . $nomFichier;
+		$config = Configuration::get_instance();
+		$theme = $config->getTheme();
+		if (isset($theme))
+		{
+			$cheminTheme = 'themes/' . $theme->getNomTheme();
+			$fichierTheme = $cheminTheme . '/' . $nomFichier;
+		}
 
 		include file_exists($fichierTheme) ? $fichierTheme : $fichierDefaut; 
 	}
