@@ -7,8 +7,4 @@ abstract class ClassesAbstraites_ThemeAbstraite implements ClassesInterfaces_The
 		return basename($reflecteur->getFileName(), '.class.php');
 	}
 }
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> FETCH_HEAD
