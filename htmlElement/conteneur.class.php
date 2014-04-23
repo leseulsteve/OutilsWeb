@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 class HtmlElement_Conteneur extends HtmlElement_ClassesAbstraites_HtmlElementAbstraite
+=======
+class HtmlElement_Conteneur extends HtmlElement_ClassesAbstraites_HtmlElement
+>>>>>>> 32ad499628ff7d0b086b8b0456d75dc8a6d87d64
 {
 	private $elements = array();
 	private $horizontal = false;
