@@ -2,8 +2,9 @@
 //
 // Variables disponibles:
 //
+$titre_page = $this->getTitrePage();
 $feuillesCss = Configuration::get_instance()->getTheme()->getFeuillesCSS();
-$scripts;
+$scripts = $this->getScripts();
 //
 //
 ?>

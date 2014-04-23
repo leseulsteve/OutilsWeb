@@ -4,7 +4,7 @@
 //
 $message;
 $header;
-$contenu;
+$contenu = $this->getContenu();
 //
 //
 ?>
