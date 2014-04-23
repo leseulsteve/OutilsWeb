@@ -1,7 +1,11 @@
 <?php
 class Themes_BootStrap3_Theme extends ClassesAbstraites_ThemeAbstraite
 {
-	public function __construct(){}
+
+	public function __construct()
+	{
+		array_push($this->feuillesCSS, '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
+	}
 
 	/**
  	 * Une ligne sur deux sera d'une autre couleur.

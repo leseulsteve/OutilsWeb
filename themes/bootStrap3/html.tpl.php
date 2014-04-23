@@ -2,7 +2,7 @@
 //
 // Variables disponibles:
 //
-$feuillesCss;
+$feuillesCss = Configuration::get_instance()->getTheme()->getFeuillesCSS();
 $scripts;
 //
 //
