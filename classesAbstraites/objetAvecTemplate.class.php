@@ -8,11 +8,11 @@ abstract class classesAbstraites_ObjetAvecTemplate
 	{
 		$reflecteur = new ReflectionClass(get_class($this));
 		$nomFichier = basename($reflecteur->getFileName(), '.class.php') . '.tpl.php';
-		$cheminDefaut = $_SERVER['DOCUMENT_ROOT'] . '/test/themes/defaut/' . $nomFichier;
+		$fichierDefaut = 'themes/defaut' . '/' . $nomFichier;
 
-		$cheminTheme = $_SERVER['DOCUMENT_ROOT'] . '/test/themes/bootstrap3/';
-		$cheminThemeFichier = $cheminTheme . $nomFichier;
+		$cheminTheme = 'themes/bootStrap3';
+		$fichierTheme = $cheminTheme . '/' . $nomFichier;
 
-		include file_exists($cheminThemeFichier) ? $cheminThemeFichier : $cheminDefaut; 
+		include file_exists($fichierTheme) ? $fichierTheme : $fichierDefaut; 
 	}
 }
