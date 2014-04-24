@@ -3,7 +3,7 @@
 // Variables disponibles:
 //
 $titre_page = $this->getTitrePage();
-$feuillesCss = Configuration::get_instance()->getTheme()->getFeuillesCSS();
+$feuillesCss = Conf_Configuration::get_instance()->getTheme()->getFeuillesCSS();
 $scripts = $this->getScripts();
 //
 //
@@ -21,7 +21,7 @@ $scripts = $this->getScripts();
 		<?php endif ?>
 	</head>
 	<body>
-		<?php include 'page.tpl.php' ?>	
+		<?php $this->affichePage() ?>	
 		<?php if (!empty($scripts)): ?>
 			<?php foreach($scripts as $script): ?>
 				<script type="text/JavaScript" src="<?php print $script ?>"></script>

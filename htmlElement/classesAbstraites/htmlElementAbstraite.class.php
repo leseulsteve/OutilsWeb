@@ -1,6 +1,6 @@
 <?php
 
-abstract class HtmlElement_ClassesAbstraites_HtmlElementAbstraite extends ClassesAbstraites_ObjetAvecTemplate
+abstract class HtmlElement_ClassesAbstraites_HtmlElementAbstraite 
 {
 	protected $id;
 	protected $classes = array();
@@ -92,6 +92,23 @@ abstract class HtmlElement_ClassesAbstraites_HtmlElementAbstraite extends Classe
 		}
 
 		return $retour;
+	}
+
+	public function render()
+	{
+		$reflecteur = new ReflectionClass(get_class($this));
+		$nomFichier = basename($reflecteur->getFileName(), '.class.php') . '.tpl.php';
+		$fichierDefaut = 'themes/defaut' . '/' . $nomFichier;
+
+		$config = Conf_Configuration::get_instance();
+		$theme = $config->getTheme();
+		if (isset($theme))
+		{
+			$cheminTheme = 'themes/' . $theme->getNomTheme();
+			$fichierTheme = $cheminTheme . '/' . $nomFichier;
+		}
+
+		include file_exists($fichierTheme) ? $fichierTheme : $fichierDefaut; 
 	}
 }
 ?>

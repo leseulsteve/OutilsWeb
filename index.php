@@ -3,12 +3,19 @@ class Index extends ClassesAbstraites_ControleurAbstraite
 {
 	public function __construct()
 	{
-		parent::__construct();
-
-		$this->titrePage = 'Tableau';
-
-		$this->contenu->ajout($this->contenu());
+		parent::__construct('Acceuil');
+		$reflecteur = new ReflectionClass(get_class($this));
+		$this->chemin = $reflecteur->getFileName();
+	
+		$this->filAriane = true;
+		$this->ajoutContenuPrinpal($this->contenu());
 		
+
+		HtmlElement_FileAriane::get_instance()->ajout($this, null); 
+		HtmlElement_FileAriane::get_instance()->ajout($this, 'index');
+		print $this->getTitrePage(); 
+
+		$this->render();
 	}
 
 	private function contenu()
@@ -33,8 +40,8 @@ class Index extends ClassesAbstraites_ControleurAbstraite
 		array_push($donnees, $jess);
 
 		$tableau = new HtmlElement_Tableau($donnees);
-		$this->theme->setBordure($tableau);
-		$this->theme->setLigneRayees($tableau);
+		$this->getTheme()->setBordure($tableau);
+		$this->getTheme()->setLigneRayees($tableau);
 
 		$contenu_droite = new HtmlElement_Conteneur();
 
@@ -57,14 +64,10 @@ class Index extends ClassesAbstraites_ControleurAbstraite
 		$liste->ajoutSousListe(2, $nouvelle_liste);
 
 		$contenu_gauche = new HtmlElement_Conteneur();
-
 		$contenu_gauche->ajout($liste);
-
 		$contenu->ajout($contenu_gauche);
 
-
 		$code = new HtmlElement_BlocCode('c:\fdfkjfdkdk');
-
 		$contenu->ajout($code);
 
 		return $contenu;
@@ -72,7 +75,6 @@ class Index extends ClassesAbstraites_ControleurAbstraite
 }
 
 $index = new Index();
-$index->render();
 
 function __autoload($class_name)
 {

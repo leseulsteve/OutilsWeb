@@ -1,5 +1,5 @@
 <?php
-class Configuration
+class Conf_Configuration
 {
 	private static $instance;
 	private $theme;
