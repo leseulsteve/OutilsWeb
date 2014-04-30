@@ -4,9 +4,9 @@ abstract class ClassesAbstraites_ControleurAbstraite extends HtmlElement_Page
 {
 
 
-	public function __construct()
+	public function __construct($titre_page)
 	{
-		parent::__construct('Acceuil');
+		parent::__construct($titre_page);
 		}
 
 

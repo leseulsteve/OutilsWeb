@@ -6,12 +6,10 @@ class HtmlElement_Page extends HtmlElement_ClassesAbstraites_HtmlElementAbstrait
 	private $scripts = array();
 	private $titrePage;
 	private $contenu_principal;
+	protected $pageHeader;
 	
-	protected $chemin;
-	protected $parent;
-	protected $filAriane = false;
+	protected $filArianeStatut;
 
-	
 	/**
  	 * Constructeur d'un tableau html.
  	 *
@@ -21,30 +19,20 @@ class HtmlElement_Page extends HtmlElement_ClassesAbstraites_HtmlElementAbstrait
 	{
 		$this->titrePage = $titrePage;
 		$this->theme = Conf_Configuration::get_instance()->getTheme();
-
+		$reflecteur = new ReflectionClass(get_class($this));
+		$this->chemin = $reflecteur->getFileName();
 		$this->contenu_principal = new HtmlElement_Conteneur();
 	}
 
-	public function estFilAriane()
+	public function getFilArianeStatut()
 	{
-		return $this->filAriane;
+		return $this->filArianeStatut;	
 	}
 
-	public function getFileAriane()
+	public function getFilAriane()
 	{
-		HtmlElement_FileAriane::get_instance()-> getFileAriane($this);
+		return HtmlElement_FileAriane::get_instance($this);
 	}
-
-	public function setParent($parent)
-	{
-		$this->parent = $parent;
-	}
-
-	public function getParent()
-	{
-		return $this->parent;
-	}
-
 
 	public function getTheme()
 	{
@@ -55,6 +43,17 @@ class HtmlElement_Page extends HtmlElement_ClassesAbstraites_HtmlElementAbstrait
 	{
 		return $this->titrePage;
 	}
+
+	public function setPageHeader($pageHeader)
+	{
+		$this->pageHeader = $pageHeader;
+	}
+
+	public function getPageHeader()
+	{
+		return $this->pageHeader;
+	}
+
 
 	public function getScripts()
 	{
@@ -69,11 +68,6 @@ class HtmlElement_Page extends HtmlElement_ClassesAbstraites_HtmlElementAbstrait
 	public function getContenuPrincipal()
 	{
 		return $this->contenu_principal;
-	}
-
-	public function getChemin()
-	{
-		return $this->chemin;
 	}
 
 	public function affichePage()

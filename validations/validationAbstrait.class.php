@@ -1,33 +1,43 @@
 <?php
 abstract class Validations_ValidationAbstrait implements Validations_ValidationInterface
 {
-	protected $champ;
+	protected $champs;
 	protected $validateurs = array();
 	protected $erreursValidation = array();
 	
-	public function __construct($champ)
+	public function __construct($champs)
 	{
-		$this->champ = $champ;
+		$this->champs = $champs;
 	}
 
 	public function ajoutValidateur($validateur)
 	{
 		array_push($this->validateurs, $validateur);
-		$validateur->setChamp($this->champ);
+		$validateur->setChamps($this->champs);
 	}
 
 	public function valide()
 	{
+		$valide = true;
+
 		foreach ($this->validateurs as $validateur)
 		{
-			$validation = $validateur->valide();
-
-			if (!is_null($validation))
+			if (!$validateur->valide())
 			{
-				array_push($this->erreursValidation, $validation);
+				foreach ($validateur->getErreur() as $erreur)
+				{
+					$this->erreursValidation[$erreur->getChamp()] = $erreur;
+				}
+
+				$valide = false;
 			}
 		}
 
+		return $valide;
+	}
+
+	public function getErreurs()
+	{
 		return $this->erreursValidation;
 	}
 }

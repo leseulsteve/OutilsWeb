@@ -3,8 +3,8 @@
 // Variables disponibles:
 //
 $message;
-$filAriane = $this->estFilAriane();
-$header;
+$filArianeStatut = $this->getFilArianeStatut();
+$pageHeader = $this->getPageHeader();
 $contenuPincipal = $this->getContenuPrincipal();
 //
 //
@@ -17,19 +17,13 @@ $contenuPincipal = $this->getContenuPrincipal();
 <?php endif?>
 
 
-<?php if ($filAriane): ?>	
-	<?php print $this->getFileAriane() ?>ff
-	<ol class="breadcrumb">
-  		<li><a href="#">Home</a></li>
-  		<li><a href="#">Library</a></li>
-  		<li class="active">Data</li>
-	</ol>
-
+<?php if ($filArianeStatut): ?>	
+	<?php  $this->getFilAriane()->render(); ?>
 <?php endif?>
 
-<?php if (isset($header)): ?>	
+<?php if (isset($pageHeader)): ?>	
 	<div class="page-header">
-		<h1><?php print $header ?></h1>
+		<h1><?php print $pageHeader ?></h1>
 	</div>
 <?php endif?>
 

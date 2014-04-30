@@ -6,24 +6,27 @@ class Validations_Validateurs_MinMax extends Validations_ValidateurAbstrait
 
 	public function __construct($valeurMin, $valeurMax)
 	{
+		parent::__construct();
 		$this->valeurMin = $valeurMin;
 		$this->valeurMax = $valeurMax;	
 	}
 
-	public function valide()
+	public function validation($champ)
 	{
-		if ($this->champ < $this->valeurMin)
+		$valide = true;
+
+		if ($champ < $this->valeurMin)
 		{
-			$this->messageErreur = "La valeur entrée doit-être plus grande que " . ($this->valeurMin - 1) . '.';
-			$this->ajoutErreur();
+			$this->messageErreur = "La valeur entrée ([champ]) doit-être plus grande que " . ($this->valeurMin - 1) . '.';
+			$valide = false;
 		}
-		elseif ($this->champ > $this->valeurMax)
+		elseif ($champ > $this->valeurMax)
 		{
-			$this->messageErreur = "La valeur entrée doit-être plus petite que " . ($this->valeurMax + 1) . '.';
-			$this->ajoutErreur();
+			$this->messageErreur = "La valeur entrée ([champ]) doit-être plus petite que " . ($this->valeurMax + 1) . '.';
+			$valide = false;
 		}
 
-		return $this->erreur;
+		return $valide;
 	}
 }
 ?>

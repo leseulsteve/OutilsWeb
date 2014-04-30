@@ -5,24 +5,25 @@ class Index extends ClassesAbstraites_ControleurAbstraite
 	{
 		parent::__construct('Acceuil');
 
-		$int = 0;
+		$int = 3;
 		$valeurMin = 1;
 		$valeurMax = 10;
 
-		$estInteger = new Validations_Validateurs_estInteger();
-		$minMax = new Validations_Validateurs_MinMax($valeurMin, $valeurMax);
-
 		$validation = new Validations_Validation($int);
-		$validation->ajoutValidateur($estInteger);
-		$validation->ajoutValidateur($minMax);
-
-		$erreurs = $validation->valide();
-
-
-		if (!empty($erreurs))
+		$validation->ajoutValidateur(new Validations_Validateurs_MinMax($valeurMin, $valeurMax));
+		$validation->ajoutValidateur(new Validations_Validateurs_EstPositif());
+		$validation->ajoutValidateur(new Validations_Validateurs_EstRempli());
+		
+		if (!$validation->valide())
 		{
+			print '<pre>';
+			print_r($validation->getErreurs());
+			print '</pre>';
+
 			$message = '';
-			foreach ($erreurs as $erreur)
+
+			
+			foreach ($validation->getErreurs() as $erreur)
 			{
 				$message .= $erreur->getMessage() . '<br>';
 			}

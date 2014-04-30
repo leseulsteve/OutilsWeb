@@ -23,7 +23,11 @@ $ligneClasses  = $this->getligneClasses()
 		<?php $compteurColonne = 1; ?>
 		<?php foreach ($this->getDonnees()[$i] as $donnees): ?>
 			<td class="<?php print $colonneClasses[$compteurColonne] ?>">
-				<?php print $donnees ?>
+				<?php if (is_a($donnees, 'HtmlElement_ClassesAbstraites_HtmlElementAbstraite')): ?>
+					<?php $donnees->render() ?>
+				<?php else: ?>
+					<?php print $donnees ?>
+				<?php endif ?>
 			</td>
 		<?php $compteurColonne++; ?>
 		<?php endforeach ?>	

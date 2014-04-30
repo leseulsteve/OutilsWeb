@@ -3,48 +3,47 @@
 class HtmlElement_FileAriane extends HtmlElement_ClassesAbstraites_HtmlElementAbstraite
 {
 	private static $instance;
-	private $racine;
-	private $elements = array();
+	private static $pages = array();
+	private static $pageCourrante;
+	protected static $filAriane = array();
 
 	private function __construct()
 	{
-
+		self::$pages = Conf_PlanSite::get_instance()->getPages();
 	}
 
-	public static function get_instance()
+	public static function get_instance($pageCourrante)
 	{
+		
+
 		if (!isset(self::$instance))
 		{
 			self::$instance = new self;
 		}
+
+		self::$pageCourrante = $pageCourrante;
+		self::setFilAriane();
+
 		return self::$instance;
 	}
 
-	public function ajout($page, $parent)
-	{
-		$reflecteur = new ReflectionClass(get_class($page));
-		$nomFichier = basename($reflecteur->getFileName(), '.php');
-
-		$this->elements[$nomFichier] = $page;
+	private static function setFilAriane()
+	{	
+		$titrePageCourrante = self::$pageCourrante->getTitrePage();
+		print $titrePageCourrante;
 		
-		if (!is_null($parent));
+		while (!is_null($titrePageCourrante))
 		{
-			foreach($this->elements as $element)
-			{
-				$reflecteur = new ReflectionClass(get_class($element));
-				$nomFichier = basename($reflecteur->getFileName(), '.php');	
-
-				if (strcmp($nomFichier, $parent) == 0)
-				{
-					$page->setParent($this->elements[$parent]);
-				}
-			}
+			self::$filAriane[$titrePageCourrante] = self::$pages[$titrePageCourrante]['lien'];
+			$titrePageCourrante = self::$pages[$titrePageCourrante]['parent'];
 		}
+
+		self::$filAriane = array_reverse(self::$filAriane);
 	}
 
-	public function getFileAriane($page)
+	public static function getFilAriane()
 	{
-		return array_search($page, $this->elements);
+		return self::$filAriane;
 	}
 }
 ?>

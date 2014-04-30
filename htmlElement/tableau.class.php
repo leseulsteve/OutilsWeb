@@ -22,7 +22,7 @@ class HtmlElement_Tableau extends HtmlElement_ClassesAbstraites_HtmlElementAbstr
 		$this->entetes = array_keys($this->donnees[$clefs[0]]);
 		
 		// Définition des classes CSS des colonnes.
-		$nbColonnes = sizeof($clefs);
+		$nbColonnes = sizeof($this->entetes);
 		for ($i = 1; $i <= $nbColonnes; $i++)
 		{
 			$classesColonne = array();

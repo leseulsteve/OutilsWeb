@@ -2,18 +2,20 @@
 //
 // Variables disponibles:
 //
-$estOrdonnee = $this->estOrdonnee();
-$olOuUl = $estOrdonnee ? 'ul' : 'ol';
-$elements = $this->getElements();
-$sousListe = $this->getSousListes();
+$filAriane = self::$filAriane;
 $classes = $this->getClassesString();
 $id = $this->getId();
 //
 //
 ?>
-<?php print $this->getFileAriane()->getChemin() ?>ff
 <ol class="breadcrumb">
-  <li><a href="#">Homfefffff</a></li>
-  <li><a href="#">Library</a></li>
-  <li class="active">Data</li>
+	<?php $nbElement = count($filAriane) ?>
+	<?php $compteur = 0 ?>
+	<?php foreach ($filAriane as $titre => $lien) : ?>
+			<?php if(++$compteur === $nbElement) : ?>
+				<li class="active"><a href=" <?php print $lien ?> "> <?php print $titre ?>	</a></li>
+			<?php else : ?>
+				<li><a href=" <?php print $lien ?> "> <?php print $titre ?>	</a></li> 	
+			<?php endif ?>	
+	<?php endforeach ?>
 </ol>
